@@ -1,0 +1,113 @@
+@charset "UTF-8";
+
+
+/************css초기화************/
+* {
+    margin: 0px;
+    padding: 0px;
+}
+ul, ol {
+    list-style: none;
+}
+a {
+    text-decoration: none
+}
+
+
+/***************header**************/
+header {height: 80px;}
+logo {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+/**************section****************/
+#profileBox{
+    width: 800px;
+}
+#profileBox img{
+    width: 150px;
+    display: inline;
+}
+#profileBox .tag{
+    border: solid 1px #b4b4b4;
+    display: inline;
+    border-radius: 10px;
+    height: 35px;
+    width: 50px;
+    margin-right: 3px;
+}
+#profileBox #infoBox{
+    width: 600px;
+}
+
+/************post*************/
+#title{font-size: large;}
+#content{
+    margin : 5px 30px 5px 30px;
+}
+#contentBox #maincon{
+    width: 1200px;
+}
+#mapinfo{
+    background-color: #d8d8d8;
+    width: 1000px;
+    min-height: 300px;
+}
+#imgs{
+    display: block;
+    overflow: hidden;
+    width: 700px;
+    height: 700px;
+    margin: 50px 0px 50px 0px;
+}
+#imgBox{
+    display: block; /* Otherwise it keeps some space around baseline */
+    min-width: 100%;    /* Scale up to fill container width */
+    min-height: 100%;
+}
+#info {
+    width: 700px;
+    border: solid 1px #e94e4e;
+    background-color: white;
+    min-height: 300px;
+} 
+#info div{
+    margin: 30px 50px;
+}
+
+#category{
+	 padding: 15px 10px;
+}
+#category input[type=radio]{
+    display: none;
+}
+#category input[type=radio]+label{
+    display: inline-block;
+    cursor: pointer;
+    height: 24px;
+    width: 90px;
+    border: 1px solid #333;
+    line-height: 24px;
+    text-align: center;
+    font-weight:bold;
+    font-size:13px;
+}
+#category input[type=radio]+label{
+    background-color: #fff;
+    color: #333;
+}
+#category input[type=radio]:checked+label{
+    background-color: #333;
+    color: #fff;
+}
+img {
+        display: flex;
+        align-items: center; /* 세로 중앙 정렬 */
+        width: 200px;
+        height: 180px;
+    }
+
+ img {
+        max-height: 100%; /* 이미지의 최대 높이를 부모 요소에 맞게 조절 */
+    }

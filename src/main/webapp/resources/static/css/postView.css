@@ -1,0 +1,112 @@
+@charset "UTF-8";
+
+
+/************css초기화************/
+* {
+    margin: 0px;
+    padding: 0px;
+}
+ul, ol {
+	margin:0px;
+	padding:0px;
+    list-style: none;
+}
+a {
+    text-decoration: none
+}
+
+
+/***************header**************/
+header {height: 80px;}
+logo {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+/**************section****************/
+#profileBox{
+    width: 800px;
+}
+#profileBox img{
+    width: 150px;
+    display: inline;
+}
+#profileBox .tag{
+    border: solid 1px #b4b4b4;
+    display: inline;
+    border-radius: 10px;
+    height: 35px;
+    width: 50px;
+    margin-right: 3px;
+}
+#profileBox #infoBox{
+    width: 600px;
+}
+
+/************post*************/
+#title{font-size: large;}
+#content{
+    margin : 5px 30px 5px 30px;
+}
+#contentBox #maincon{
+    width: 1200px;
+}
+#mapinfo{
+    background-color: #d8d8d8;
+    width: 1000px;
+    min-height: 300px;
+}
+#imgs{
+    width: 800px;
+    height: 700px;
+    margin: 50px 0px 50px 0px;
+    position:relative;
+}
+#imgs .list{
+	width: 800px;
+	overflow:hidden;
+	}
+#imgs .list .btn{font-size:18px;}
+#imgs .list .cont{
+	display:none;
+	position:absolute;
+	top:42px;
+	left:0;
+	background:#555;
+	text-align:center;
+	width:250px;
+	height:100px;}
+#imgs .list li.is_on .btn{
+	width: 100%;
+	font-weight:bold;
+	background-color: #e94e4e;
+	color:white;}
+#imgs .list li.is_on .cont{
+	width: 100%;
+	display:block;
+	height: auto;
+	}
+#imgBox{
+	margin-top : 40px
+}
+
+/*********map***********/
+
+#info {
+	margin : 30px 0px 40px 0px;
+    width: 700px;
+    border: solid 1px #e94e4e;
+    background-color: white;
+    min-height: 300px;
+} 
+#info div{
+    margin: 30px 50px;
+}
+#infoWindow{
+	margin:0px !important;
+	width: 200px; height:auto;
+	background-color:white;
+	padding: 3px;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 16px 0px;
+}
+#infoWindow div{margin:10px !important;}
