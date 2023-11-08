@@ -30,12 +30,11 @@ private static PostsDAO instance = new PostsDAO();
 			pstmt.setInt(1, num);
 			pstmt.executeUpdate();
 			
-			pstmt = conn.prepareStatement(
-			" select p.*, u.nickname "
-			+ "			from posts p "
+			pstmt = conn.prepareStatement( " select p.*, u.nickname "
+										+ "	from posts p "
 			+ "			INNER JOIN users u "
 			+ "			ON p.user_num = u.num "
-			+ "			where p.num = ? ");
+			+ "			where p.num = ? " );
 			
 			pstmt.setInt(1, num);
 			rs = pstmt.executeQuery();
