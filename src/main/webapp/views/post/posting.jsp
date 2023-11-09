@@ -17,7 +17,7 @@
 </head>
 <body>
 	<%-- header --%>
-	<%@ include file="../user/top.jsp"%>
+	<!-- <%@ include file="../user/top.jsp"%>  -->
 	<%-- /header --%>
 	
 	<%
