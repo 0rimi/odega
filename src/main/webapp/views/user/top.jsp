@@ -37,15 +37,13 @@ w:hover {
     <tr>
      <td>
       <%
-       if (session.getAttribute("sid") == null) {
+       if(session.getAttribute("sid") == null) {
       %>
       <table width="100%" height="50px" border="0" align="right"
        border="0" style="color: white; background-color: black">
        <b><h2>  <logo class="m-3" onClick="location.href='top.jsp'" style="cursor: pointer"><a href="../main.jsp">ODEGA</a></logo></h2></b>
        <tr>
-       
         <td style="width: 550px"></td>
-        
         <td onClick="location.href='${pageContext.request.contextPath}/views/user/loginform.jsp'" style="cursor: pointer"><w>로그인</w></td>
         <td>
         <td onClick="location.href='${pageContext.request.contextPath}/views/user/joinform.jsp'" style="cursor: pointer"><w>회원가입</w></td>
@@ -115,15 +113,15 @@ w:hover {
                 <li style="background-color: white; margin-top: 1px"
                 
                 
-                 onClick="location.href='myPage.jsp?sql1=posts_num&sql2=desc'">내가쓴 포스트 보기&nbsp;</li>
+                 onClick="location.href='/odega/views/mypage/myPage.jsp?sql1=posts_num&sql2=desc'">내가쓴 포스트 보기&nbsp;</li>
                 <li style="background-color: white; margin-top: 1px"
                 
                 
-                 onClick="location.href='nowPassword.jsp'">비밀번호 변경&nbsp;</li>
+                 onClick="location.href='/odega/views/mypage/nowPassword.jsp'">비밀번호 변경&nbsp;</li>
                 <li style="background-color: white; margin-top: 1px"
                 
                 
-                 onClick="location.href='nowMemberPass.jsp'">회원정보 변경&nbsp;</li>
+                 onClick="location.href='/odega/views/mypage/nowMemberPass.jsp'">회원정보 변경&nbsp;</li>
                </ul></li>
                
               <li style="width: 60px">|</li>

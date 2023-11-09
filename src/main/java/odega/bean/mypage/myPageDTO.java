@@ -13,7 +13,7 @@ public class myPageDTO {
    private Timestamp reg;
    private String user_name;
    private int status; 
-   private int phone;
+   private String phone;
    
    private int post_num;
    private String post_title;
@@ -35,10 +35,10 @@ public class myPageDTO {
    private Timestamp comments_reg;
    private int comment_views;
    
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
    	public int getStatus() {

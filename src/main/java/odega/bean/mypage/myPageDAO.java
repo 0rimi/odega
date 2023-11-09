@@ -106,7 +106,7 @@ public class myPageDAO extends OracleDB {
 				dto.setUser_like_cnt(rs.getInt("user_like_cnt"));
 				dto.setReg(rs.getTimestamp("reg"));
 				dto.setUser_name(rs.getString("user_name"));
-				dto.setPhone(rs.getInt("phone"));
+				dto.setPhone(rs.getString("phone"));
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -161,7 +161,7 @@ public class myPageDAO extends OracleDB {
 					+ " (select ro.* , rownum r from "
 					+ " (select u.status, u.num, u.nickname, p.title, p.user_num, p.reg, p.content_cnt, i.img_url, p.posts_views, i.posts_num, p.post_like_cnt, p.num \"PNUM\" "
 					+ " from users u, posts p, images i "
-					+ " where u.num = p.user_num and i.posts_num(+) = p.num and p.posts_views=0 and u.status=1 and post_image_num=1 order by " + msql1 + " " + msql2 + " ) ro) "
+					+ " where u.num = p.user_num and i.posts_num(+) = p.num and p.posts_views=0 and post_image_num=1 order by " + msql1 + " " + msql2 + " ) ro) "
 					+ " where r >= ? and r <= ? ";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, start);
@@ -280,6 +280,7 @@ public class myPageDAO extends OracleDB {
 					dto.setReg(rs.getTimestamp("reg"));
 					dto.setUser_name(rs.getString("user_name"));
 					dto.setStatus(rs.getInt("status"));
+					dto.setPhone(rs.getString("phone"));
 					list.add(dto);
 				}
 			} else if(searchOption.equals("nickname")){
@@ -303,6 +304,7 @@ public class myPageDAO extends OracleDB {
 					dto.setReg(rs.getTimestamp("reg"));
 					dto.setUser_name(rs.getString("user_name"));
 					dto.setStatus(rs.getInt("status"));
+					dto.setPhone(rs.getString("phone"));
 					list.add(dto);
 				}
 			}else{
@@ -326,6 +328,7 @@ public class myPageDAO extends OracleDB {
 					dto.setReg(rs.getTimestamp("reg"));
 					dto.setUser_name(rs.getString("user_name"));
 					dto.setStatus(rs.getInt("status"));
+					dto.setPhone(rs.getString("phone"));
 					list.add(dto);
 				}
 			}
@@ -581,7 +584,7 @@ public class myPageDAO extends OracleDB {
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, dto.getUser_name());
 		pstmt.setString(2, dto.getNickname());
-		pstmt.setInt(3, dto.getPhone());
+		pstmt.setString(3, dto.getPhone());
 		pstmt.setString(4, birth);
 		pstmt.setString(5, sid);
 		result = pstmt.executeUpdate();
@@ -787,6 +790,7 @@ public class myPageDAO extends OracleDB {
 				dto.setReg(rs.getTimestamp("reg"));
 				dto.setUser_name(rs.getString("user_name"));
 				dto.setStatus(rs.getInt("status"));
+				dto.setPhone(rs.getString("phone"));
 				list.add(dto);
 			}
 		}catch(Exception e) {

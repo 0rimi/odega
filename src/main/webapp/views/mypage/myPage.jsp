@@ -2,6 +2,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="odega.bean.mypage.myPageDTO" %>
 <%@ page import="odega.bean.mypage.myPageDAO" %>
+<%@ page import = "java.text.SimpleDateFormat" %>
+
 <html>
 
 <head>
@@ -29,54 +31,20 @@
 %>
 
 
-	<%-- 로그인 체크 --%>
-<%
-   String sid = (String)session.getAttribute("sid");
-   if(sid == null){
-%>      <script>
-         alert("로그인 후 사용 가능합니다.");
-         window.location="../user/loginform.jsp";
-      </script>
-<% }
-   myPageDAO dao = new myPageDAO();
-   myPageDTO dto = new myPageDTO();
-   dto = dao.myInfo(sid);
+<% 
+	String sid = (String)session.getAttribute("sid");
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy년MM월dd일");
+   	myPageDAO dao = new myPageDAO();
+   	myPageDTO dto = new myPageDTO();
+   	dto = dao.myInfo(sid);
 %>
-
-
-
-	<%-- 포스트 작성, 비밀번호 변경, 회원정보 변경 --%>
-	<%-- 로그인 상태 = 로그아웃 버튼 출력 , 로그아웃 상태 = 로그인 버튼 출력 --%>
-<div  align="center">
-   <div class="col" align="left" >
-			<%@ include file="../user/top.jsp"%>
-			<h2 class="mt-3">
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-				<a href="../post/posting.jsp?"><button type="button" class="btn btn-success"">포스트 작성</button></a>
-				<%
-				   String logsid = (String)session.getAttribute("sid");
-				   if(logsid != null){
-				%>
-				&nbsp&nbsp
-				<button type="button" class="btn btn-success" 
-				data-bs-toggle="dropdown" aria-expanded="false">
-   				회원정보</button>
-   				  <ul class="dropdown-menu">
-   				 	<li><a class="dropdown-item" href="myPageInfo.jsp">나의 정보 확인</a></li>
-   				  	<li><a class="dropdown-item" href="myPage.jsp?sql1=posts_num&sql2=desc">내가쓴 포스트 보기</a></li>
-				    <li><a class="dropdown-item" href="nowPassword.jsp">비밀번호 변경</a></li>
-				    <li><a class="dropdown-item" href="nowMemberPass.jsp">회원정보 변경</a></li>
-				  </ul>
-				&nbsp&nbsp
-				<button onclick="window.location='../user/logout.jsp'" type="button" class="btn btn-success">로그아웃</button>
-				<%} else {
-%>
-				&nbsp&nbsp
-				<button onclick="window.location='../user/loginform.jsp'" type="button" class="btn btn-success">로그인</button>
-								
-				<% }%>
-			</h2>
+<div align="center">
+      <div class="col" align="left">
+         <%@ include file="../user/top.jsp"%>
+         <h2 class="mt-3"></h2>
+	</div>
+</div>
+<hr />
 
 
 
@@ -88,13 +56,22 @@
          window.location="/odega/views/user/loginform.jsp";
       </script>
 <% } else if(sid.equals("admin")){ %>
-		<div align="center" ><p style="font-size:30px"><button onclick="window.location='admin.jsp'" type="button" class="btn btn-success"">관리자 페이지</button></div>
-	<%}%>
-		</div>
-</div>
-<hr />
 
-<h1></h1><br />
+
+<div align="center" >      
+	<p style="font-size:30px">
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	<button onclick="window.location='admin.jsp'" type="button" class="btn btn-success"">관리자 페이지</button></div>
+	<%}%>
+</div>
+
 
 	<%-- 접속한 계정의 글정보 확인(최신순, 오래된순, 좋아요순) --%>
 	<%-- 검색(제목만 검색) , 검색(제목+본문 검색) --%>
@@ -108,7 +85,7 @@
       	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       	<a href="../mypage/myPage.jsp?sql1=posts_num&sql2=desc"><button type="button" class="btn btn-outline-success">나의 최신순</button></a>
       	<a href="../mypage/myPage.jsp?sql1=posts_num&sql2=asc"><button type="button" class="btn btn-outline-success" >나의 오래된순</button></a>
-      	<a href="/odega/views/recomm/like_list.jsp"><button type="button" class="btn btn-outline-success">나의 좋아요순</button></a>
+      	<a href="../mypage/myPage.jsp?sql1=post_like_cnt&sql2=desc"><button type="button" class="btn btn-outline-success">나의 좋아요순</button></a>
       	<select name="searchOption">
          	<option value = "total" >제목+본문</option>
          	<option value = "title" >제목</option>
@@ -156,7 +133,7 @@
 	            </a>
 	            <p style="font-size:15px;">작성자 : <%=sdto.getNickname()%></p>
 	            <p style="font-size:15px;">조회수 : <%=sdto.getPost_content_cnt() %></p>
-	            <p style="font-size:15px;">작성일 : <%=sdto.getPost_reg()%></p>
+	            <p style="font-size:15px;">작성일 : <%=sdf.format(sdto.getPost_reg())%></p>
 	            <h5><img src="/odega/resources/img/good.PNG" style="width:30px"><%=sdto.getPost_like_cnt()%></h5>
 	            
 	         </div>
@@ -187,7 +164,7 @@
 		
 				<%} if(endPage < pageCount){%>
 				<b><a href="../mypage/myPage.jsp?sid=<%=sid%>&sql1=<%=sql1%>&sql2=<%=sql2%>&pageNum=<%=startPage+10%>">[다음]</a></b>
-		   <%   }   
+		   <%}   
 		   }%>
 		</div>
 </body>

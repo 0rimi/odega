@@ -34,33 +34,7 @@
 <div  align="center">
    <div class="col" align="left" >
 			<%@ include file="../user/top.jsp"%>
-			<h2 class="mt-3">
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-				<a href="../post/posting.jsp?"><button type="button" class="btn btn-success"">포스트 작성</button></a>
-				<%
-				   String logsid = (String)session.getAttribute("sid");
-				   if(logsid != null){
-				%>
-				&nbsp&nbsp
-				<button type="button" class="btn btn-success" 
-				data-bs-toggle="dropdown" aria-expanded="false">
-   				회원정보</button>
-   				  <ul class="dropdown-menu">
-   				 	<li><a class="dropdown-item" href="myPageInfo.jsp">나의 정보 확인</a></li>
-   				  	<li><a class="dropdown-item" href="myPage.jsp?sql1=posts_num&sql2=desc">내가쓴 포스트 보기</a></li>
-				    <li><a class="dropdown-item" href="nowPassword.jsp">비밀번호 변경</a></li>
-				    <li><a class="dropdown-item" href="nowMemberPass.jsp">회원정보 변경</a></li>
-				  </ul>
-				&nbsp&nbsp
-				<button onclick="window.location='../user/logout.jsp'" type="button" class="btn btn-success">로그아웃</button>
-				<%} else {
-%>
-				&nbsp&nbsp
-				<button onclick="window.location='../user/loginform.jsp'" type="button" class="btn btn-success">로그인</button>
-								
-				<% }%>
-			</h2>
+			<h2 class="mt-3"></h2>
 		</div>
 </div>
 <hr />
@@ -106,7 +80,7 @@
 					<div align="center">
 						<table class="table table-hover table-bordered">
 							<tr  align="center">
-								<td><br /> <h3> 회원가입을 위해서 정보를 입력하세요</h3></td>
+								<td><br /> <h3> 변경할 회원 정보를 입력하세요</h3></td>
 							</tr>
 							<tr align="center">
 								<td>이름<br /> <input type="text" name="user_name" placeholder="이름 입력" required /></td>

@@ -30,41 +30,42 @@
 
 	<%-- 포스트 작성, 비밀번호 변경, 회원정보 변경 --%>
 	<%-- 로그인 상태 = 로그아웃 버튼 출력 , 로그아웃 상태 = 로그인 버튼 출력 --%>
-<div  align="center">
-   <div class="col" align="left" >
-			<%@ include file="../user/top.jsp"%>
-			<h2 class="mt-3">
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-				<a href="../post/posting.jsp?"><button type="button" class="btn btn-success"">포스트 작성</button></a>
-				<%
-				   String logsid = (String)session.getAttribute("sid");
-				   if(logsid != null){
-				%>
-				&nbsp&nbsp
-				<button type="button" class="btn btn-success" 
-				data-bs-toggle="dropdown" aria-expanded="false">
-   				회원정보</button>
-   				  <ul class="dropdown-menu">
-   				 	<li><a class="dropdown-item" href="myPageInfo.jsp">나의 정보 확인</a></li>
-   				  	<li><a class="dropdown-item" href="myPage.jsp?sql1=posts_num&sql2=desc">내가쓴 포스트 보기</a></li>
-				    <li><a class="dropdown-item" href="nowPassword.jsp">비밀번호 변경</a></li>
-				    <li><a class="dropdown-item" href="nowMemberPass.jsp">회원정보 변경</a></li>
-				  </ul>
-				&nbsp&nbsp
-				<button onclick="window.location='../user/logout.jsp'" type="button" class="btn btn-success">로그아웃</button>
-				<%} else {
-%>
-				&nbsp&nbsp
-				<button onclick="window.location='../user/loginform.jsp'" type="button" class="btn btn-success">로그인</button>
-								
-				<% }%>
-			</h2>
+<div align="center">
+      <div class="col" align="left">
+         <%@ include file="../user/top.jsp"%>
+         <h2 class="mt-3"></h2>
 	</div>
 </div>
 <hr />
-<h1></h1>
-<br />
+
+
+
+	<%-- 관리자페이지 이동(admin 계정일때만 확인가능) --%>
+<%
+	String sid = (String)session.getAttribute("sid");
+   if(sid == null){
+%>      <script>
+         alert("로그인 후 사용 가능합니다.");
+         window.location="/odega/views/user/loginform.jsp";
+      </script>
+<% } else if(sid.equals("admin")){ %>
+
+
+<div align="center" >      
+	<p style="font-size:30px">
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	<button onclick="window.location='admin.jsp'" type="button" class="btn btn-success"">관리자 페이지</button></div>
+	<%}%>
+</div>
+
+
 
 	<%-- 검색(제목만 검색) , 검색(제목+본문 검색) --%>
 <div  align="center">
@@ -108,7 +109,7 @@
 					<div align="center">
 					<table class="table table-hover table-bordered">
 						<tr  align="center">
-							<td><br /> <h3>비밀번호를 입력하세요</h3></td>
+							<td><br /> <h3>회원 정보를 변경하려면 비밀번호를 입력하세요</h3></td>
 						</tr>
 						<tr align="center">
 							<td>현재 비밀번호<br /> <input type="password" name="nowPw" placeholder="현재 비밀번호 입력" required />

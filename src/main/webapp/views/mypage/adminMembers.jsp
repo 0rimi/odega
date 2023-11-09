@@ -3,7 +3,8 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="odega.bean.mypage.myPageDTO"%>
 <%@ page import="odega.bean.mypage.myPageDAO"%>
-  
+<%@ page import = "java.text.SimpleDateFormat" %>
+
 <head>
 <meta charset="UTF-8">
 <title>ODEGA 관리자 페이지</title>
@@ -17,7 +18,7 @@
 
 	<%-- 페이징 --%>
 <%
-   	int pageSize = 6;
+   	int pageSize = 10;
    
    	String pageNum = request.getParameter("pageNum");
    	if(pageNum == null){
@@ -34,28 +35,10 @@
 	<div>
 		<div class="col" align="left">
 			<%@ include file="../user/top.jsp"%>
-			<h2 class="mt-3">
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-				<button type="button" class="btn btn-success">포스트 작성</button>
-				&nbsp&nbsp<a href="myPage.jsp?sql1=posts_reg&sql2=desc"><button type="button" class="btn btn-success">마이페이지</button></a>
-
-				<%
-   String sid = (String)session.getAttribute("sid");
-   if(sid != null){
-      %>
-				&nbsp&nbsp
-				<button onclick="window.location='../user/logout.jsp'" type="button" class="btn btn-success">로그아웃</button>
-				<%} else {
-%>
-				&nbsp&nbsp
-				<button onclick="window.location='./user/loginform.jsp'" type="button" class="btn btn-success">로그인</button>
-				<% }%>
-			</h2>
+			<h2 class="mt-3"></h2>
 		</div>
 	</div>
 	<hr />
-	<h1></h1>
 	<br />
 	
 	<%-- 관리자 계정의 글정보 확인(최신순, 오래된순, 좋아요순 , 검색) --%>
@@ -125,30 +108,42 @@
 <%-- 삭제할 전체 회원 목록 호출 --%>
 <div class="container">
 	<div class="row" align="center">
-			<%
-			myPageDAO dao = new myPageDAO();
-			ArrayList<myPageDTO> list = dao.userList(start, end, msql1 , msql2);
-			for(myPageDTO dto : list){
-			%>
-			<div class="col-md-4">
-				<p style="font-size: 15px;">유저번호 :<%=dto.getNum()%></p>
-				<p style="font-size: 15px;">유저ID :<%=dto.getUserid()%></p>
-				<p style="font-size: 15px;">유저 닉네임 :<%=dto.getNickname() %></p>
-				<p style="font-size: 15px;">생년월일 :<%=dto.getBirth()%></p>
-				<p style="font-size: 15px;">등록일 :<%=dto.getReg()%></p>
-				<p style="font-size: 15px;">유저 이름 :<%=dto.getUser_name()%></p>
-				<script type="text/javascript">
-					function del() {
-						if(confirm("정말 삭제하시겠습니까?")==true){
-							location.href='myMemberDelete.jsp?unum=<%=dto.getNum()%>';
-						}
+			<script type="text/javascript">
+				function del(userNum) {
+					if(confirm("정말 삭제하시겠습니까?")==true){
+						location.href='myMemberDelete.jsp?unum='+userNum;
 					}
-				</script>
-				<a href="myMemberDelete.jsp?unum=<%=dto.getNum()%>"><button onclick="del();" type="button" class="btn btn-success" >삭제</button></a>
-				<h3></h3>
-				<hr />
-			</div>
-					<%}%>
+				}
+			</script>
+			<%
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy년MM월dd일");
+			myPageDAO dao = new myPageDAO();
+			ArrayList<myPageDTO> list = dao.userList(start, end, msql1 , msql2);%>
+			
+			<table class="table table-hover table-bordered">
+				<tr>
+					<td align="center"><h5>유저 번호</h5></td>
+					<td align="center"><h5>유저 아이디</h5></td>
+					<td align="center"><h5>유저 이름</h5></td>
+					<td align="center"><h5>유저 닉네임</h5></td>
+					<td align="center"><h5>전화번호</h5></td>
+					<td align="center"><h5>생년월일</h5></td>
+					<td align="center"><h5>등록일</h5></td>
+					<td align="center"><h5>글삭제</h5></td>
+				</tr>
+				<% for(myPageDTO dto : list){%>
+			    <tr>
+			      	<td align="center"><%=dto.getNum()%></td>
+			      	<td align="center"><%=dto.getUserid()%></td>
+			      	<td align="center"><%=dto.getUser_name()%></td>
+			      	<td align="center"><%=dto.getNickname()%></td>
+			      	<td align="center"><%=dto.getPhone()%></td>
+			      	<td align="center"><%=sdf.format(dto.getBirth())%></td>
+			      	<td align="center"><%=sdf.format(dto.getReg())%></td>
+			      	<td align="center"><button onclick="del(<%=dto.getNum()%>);" type="button" class="btn btn-success" >삭제</button></td>
+			    	</tr>
+			    <%}%>
+		</table>
 	</div>
 </div>
 <h1></h1><br />

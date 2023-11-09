@@ -33,29 +33,11 @@
 	<div align="center">
 		<div class="col" align="left">
 			<%@ include file="../user/top.jsp"%>
-			<h2 class="mt-3">
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-				<a href="../post/posting.jsp?"><button type="button" class="btn btn-success"">포스트 작성</button></a>
-				&nbsp&nbsp<a href="myPage.jsp?sql1=posts_num&sql2=desc"><button type="button" class="btn btn-success">마이페이지</button></a>
-
-				<%
-   String sid = (String)session.getAttribute("sid");
-   if(sid != null){
-      %>
-				&nbsp&nbsp
-				<button onclick="window.location='../user/logout.jsp'" type="button" class="btn btn-success">로그아웃</button>
-				<%} else {
-%>
-				&nbsp&nbsp
-				<button onclick="window.location='../user/loginform.jsp'" type="button" class="btn btn-success">로그인</button>
-				<% }%>
-			</h2>
+			<h2 class="mt-3"></h2>
 
 		</div>
 	</div>
 	<hr />
-	<h1></h1>
 	<br />
 	
 	<%-- 관리자 계정의 글정보 확인(최신순, 오래된순, 좋아요순 , 검색) --%>

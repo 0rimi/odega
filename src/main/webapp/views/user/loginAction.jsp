@@ -20,10 +20,12 @@
      	
     	if (result == 1) {
     		session.setAttribute("sid", user.getUser_id()); // 세션 생성 ☆★
-    		
+    		int result2 = userDAO.userNum(user.getUser_id(), user.getUser_pw());
+    	    session.setAttribute("unum", result2);
     		String checkbox = request.getParameter("checkbox");
     		if(checkbox!=null){ //체크박스가 클릭되어 있으면
     			Cookie cookie = new Cookie("id", user.getUser_id());
+    			
     			//유효시간 설정
     			cookie.setMaxAge(60*10); //10분간 유효
     			//사용자에게 쿠키값을 넘겨줌.
