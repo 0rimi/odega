@@ -35,12 +35,13 @@
   	//img 각각 List에 넣기(img_post_num은 dao에서)
   	List<ImageDTO> imgList = new ArrayList<ImageDTO>();
   	Enumeration enu = mr.getFileNames();
+  	
   	while(enu.hasMoreElements()){
   		//enu 의 요소를 file에 저장
   		String file= (String)enu.nextElement(); 
   		// 파일의 이름 얻기
   		String filename = mr.getFilesystemName(file);
-  		
+		//System.out.println("=======sss========="+file); // image1
   		ImageDTO img = new ImageDTO();
   		img.setImg_url(filename);
   		img.setPosts_num(postNum);

@@ -45,7 +45,7 @@
         <!-- 로그인 했을때
         <div id="miniProfile"></div> -->
         --%>
-        <%@ include file="../user/top.jsp"%>
+        <!-- <%@ include file="../user/top.jsp"%> -->
     </header>
     <!--/header-->
 
