@@ -26,9 +26,29 @@ if (user.getUser_name() == null || user.getUser_id() == null || user.getPhone() 
          
     
 } else if (pw != null) {
+	
+		//비밀번호 암호화해서 표출
+	
+			int pwSize = pw.length()/2;
+			String resultPw_1 = pw.substring(0, pwSize );
+	
+			// 뒤의 절반은 *로 표시
+			String tmp = "";
+			if (pwSize%2 ==1) { // 홀수인 경우 * 한개 더 추가
+				for( int i=0; i<pwSize+1; i++ ) {
+					tmp += "*";
+				}
+			} else {
+				for( int i=0; i<pwSize; i++ ) {
+					tmp += "*";
+				}
+			}
+			String resultPw = resultPw_1 + tmp;
+
+	
         PrintWriter script = response.getWriter();
         script.println("<script>");
-        script.println("alert('회원님의 비밀번호는["+ pw + "]입니다.' );");
+        script.println("alert('회원님의 비밀번호는["+ resultPw + "]입니다.' );");
         script.println("location.href = 'loginform.jsp';");
         script.println("</script>");
         

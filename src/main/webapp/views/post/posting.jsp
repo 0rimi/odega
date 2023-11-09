@@ -29,7 +29,7 @@
         	alert("로그인 후 사용 가능합니다.");
          	window.location="/odega/views/user/loginform.jsp";
       	</script>
-	<%}
+	<%}else{
    		//로그인한 사용자 정보 받아오기
    		int unum = (Integer)session.getAttribute("unum");
 	%>
@@ -75,6 +75,7 @@
 		<jsp:include page="modal.jsp" />
 		
 	</section>
+	<%} %>
 </body>
 <script>
 

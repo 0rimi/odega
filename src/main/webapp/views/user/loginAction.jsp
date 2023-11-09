@@ -20,9 +20,6 @@
      	
     	if (result == 1) {
     		session.setAttribute("sid", user.getUser_id()); // 세션 생성 ☆★
-	   		int result2 = userDAO.userNum(user.getUser_id(), user.getUser_pw());
-	   	    session.setAttribute("unum", result2);         // 유저번호를 위한 세션 생성 ☆★
-
     		
     		String checkbox = request.getParameter("checkbox");
     		if(checkbox!=null){ //체크박스가 클릭되어 있으면
