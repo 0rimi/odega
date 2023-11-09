@@ -3,6 +3,13 @@
 <%--  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> --%> 
 <html>
 
+<head>
+<meta charset="UTF-8">
+<title>ODEGA</title>
+<link href="/odega/resources/img/good.PNG" rel="shortcut icon" type="image/x-icon">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
 
 <style>
 .dropdown>ul>li {
@@ -37,13 +44,17 @@ w:hover {
     <tr>
      <td>
       <%
-       if(session.getAttribute("sid") == null) {
+       if (session.getAttribute("sid") == null) {
       %>
       <table width="100%" height="50px" border="0" align="right"
        border="0" style="color: white; background-color: black">
-       <b><h2>  <logo class="m-3" onClick="location.href='top.jsp'" style="cursor: pointer"><a href="../main.jsp">ODEGA</a></logo></h2></b>
+      
+       <h1 class="display-7">  <logo class="m-3"  style="cursor: pointer"><a href="/odega/views/main.jsp">✈ODEGA</a></logo></h1></i>
+       
        <tr>
+       
         <td style="width: 550px"></td>
+        
         <td onClick="location.href='${pageContext.request.contextPath}/views/user/loginform.jsp'" style="cursor: pointer"><w>로그인</w></td>
         <td>
         <td onClick="location.href='${pageContext.request.contextPath}/views/user/joinform.jsp'" style="cursor: pointer"><w>회원가입</w></td>
@@ -56,7 +67,7 @@ w:hover {
 <%} else {%>
       <table width="100%" height="50px" border="0" align="right"
        border="0" style="color: white; background-color: black">
-       <b><h2>  <logo class="m-3" onClick="location.href='top.jsp'" style="cursor: pointer"><a href="../main.jsp">ODEGA</a></logo></h2></b>
+       <b><h2>  <logo class="m-3"  style="cursor: pointer"><a href="/odega/views/main.jsp">✈ODEGA</a></logo></h2></b>
        <tr>
       
         <td style="width: 550px"></td>
@@ -67,6 +78,7 @@ w:hover {
         <td onClick="myinfomenu()" style="cursor: pointer"><w>회원 정보 관리</w></td>
        </tr>
       </table>
+      
 <%} %>
      </td>
     </tr>
@@ -99,32 +111,30 @@ w:hover {
               <li align="center" onClick="location.href='/odega/views/main.jsp'" 
               style="cursor: pointer;"><w>HOME</w></li>
               
-              <li style="width: 60px">|</li>
+              <li style="width: 80px">|</li>
               
               <li align="center" onclick="location.href='/odega/views/post/posting.jsp'" style="cursor: pointer;"><w>POSTING</w></li>
              
-              <li style="width: 60px">|</li>
+             <li style="width: 100px">|</li>
              
-              <li align="left" style="cursor: pointer;"><w>MYPAGE</w>
-               <ul style="font-size: 16px;">
+             
+              <li align="center" style="cursor: pointer;" width="100px"><w>MYPAGE</w>
+               <ul class="dropdown-menu"  align="center" style= "font-size: 14px;">
                
-                <li style="background-color: white;"
-                 onClick="location.href='/odega/views/mypage/myPageInfo.jsp'">나의 정보 확인&nbsp;</li>
-                <li style="background-color: white; margin-top: 1px"
+                <li  align="center" style="background-color: white;" 
+                 onClick="location.href='/odega/views/mypage/myPageInfo.jsp'">내 정보 확인&nbsp;</li>
+               
+                <li  align="center" style="background-color: white; margin-top: 8px"
+                 onClick="location.href='myPage.jsp?sql1=posts_num&sql2=desc'">내가 쓴 포스트 보기&nbsp;</li>
                 
-                
-                 onClick="location.href='/odega/views/mypage/myPage.jsp?sql1=posts_num&sql2=desc'">내가쓴 포스트 보기&nbsp;</li>
-                <li style="background-color: white; margin-top: 1px"
-                
-                
-                 onClick="location.href='/odega/views/mypage/nowPassword.jsp'">비밀번호 변경&nbsp;</li>
-                <li style="background-color: white; margin-top: 1px"
-                
-                
-                 onClick="location.href='/odega/views/mypage/nowMemberPass.jsp'">회원정보 변경&nbsp;</li>
+                <li  align="center" style="background-color: white; margin-top: 8px"
+                 onClick="location.href='nowPassword.jsp'">비밀번호 변경&nbsp;</li>
+               
+                <li  align="center" style="background-color: white; margin-top: 8px"
+                 onClick="location.href='nowMemberPass.jsp'">회원정보 변경&nbsp;</li>
                </ul></li>
                
-              <li style="width: 60px">|</li>
+              <li style="width: 100px">|</li>
 
 
                 <li align="left"  onClick="location.href='/odega/views/filter/main_theme.jsp'" 
