@@ -108,7 +108,7 @@
       	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       	<a href="../mypage/myPage.jsp?sql1=posts_num&sql2=desc"><button type="button" class="btn btn-outline-success">나의 최신순</button></a>
       	<a href="../mypage/myPage.jsp?sql1=posts_num&sql2=asc"><button type="button" class="btn btn-outline-success" >나의 오래된순</button></a>
-      	<a href="../mypage/myPage.jsp?sql1=post_like_cnt&sql2=desc"><button type="button" class="btn btn-outline-success">나의 좋아요순</button></a>
+      	<a href="/odega/views/recomm/like_list.jsp"><button type="button" class="btn btn-outline-success">나의 좋아요순</button></a>
       	<select name="searchOption">
          	<option value = "total" >제목+본문</option>
          	<option value = "title" >제목</option>
