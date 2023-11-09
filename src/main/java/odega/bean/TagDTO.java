@@ -1,13 +1,13 @@
 package odega.bean;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 public class TagDTO {
 
    private int tag_num; //pk
    private String tag_name;
    private Timestamp reg; // 태그 생성일자
-   private String post_num; //태그가 쓰인 게시물(posts테이블)의 넘버입니다.
+   private int post_num; //태그가 쓰인 게시물(posts테이블)의 넘버입니다.
    public int getTag_num() {
       return tag_num;
    }
@@ -26,10 +26,17 @@ public class TagDTO {
    public void setReg(Timestamp reg) {
       this.reg = reg;
    }
-   public String getPost_num() {
-      return post_num;
-   }
-   public void setPost_num(String post_num) {
-      this.post_num = post_num;
-   }
+	public int getPost_num() {
+		return post_num;
+	}
+	public void setPost_num(int post_num) {
+		this.post_num = post_num;
+	}
+	
+	
+	
+	@Override
+	public String toString() {
+		return "TagDTO [tag_num=" + tag_num + ", tag_name=" + tag_name + ", reg=" + reg + ", post_num=" + post_num + "]";
+	}
 }

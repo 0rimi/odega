@@ -8,6 +8,8 @@
 <%@ page import = "odega.bean.MapDTO"%>
 <%@ page import = "odega.bean.ImageDAO"%>
 <%@ page import = "odega.bean.ImageDTO"%>
+<%@ page import = "odega.bean.TagDAO"%>
+<%@ page import = "odega.bean.TagDTO"%>
 
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
@@ -61,7 +63,7 @@
 	PostsDAO postDAO = new PostsDAO();
 	PostsDTO post = postDAO.getPost(postNum);
 
-   SimpleDateFormat sdf = new SimpleDateFormat("yy.MM.dd HH:mm");
+   	SimpleDateFormat sdf = new SimpleDateFormat("yy.MM.dd HH:mm");
 %>
 	<section>
         <div>
@@ -79,9 +81,13 @@
                         <%=post.getNickname() %> 님<br>
                         <%= sdf.format(post.getReg())%> 수정<br>
                         <div>
-                            <div class="tag">#홍대</div>
-                            <div class="tag">#감성</div>
-                            <div class="tag">#반려견</div>
+                        	<%
+                        		TagDAO tagDAO = new TagDAO();
+								List<TagDTO> tagList = tagDAO.getTagList(postNum);
+								
+								for(int i=0; i<tagList.size(); i++){%>
+									<div class="tag">#<%=tagList.get(i).getTag_name() %></div>
+							<%}%>
                         </div>
                         <div class="d-flex justify-content-start align-items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">

@@ -316,11 +316,11 @@ var modalPlace = {};
 
 //추가하기버튼 클릭시
 function addPlace(){
-	var place = [place_id,lat,longi,place_name,address_name];
 	var des = $('#description').val();
+	var place = [place_id,lat,longi,place_name,address_name,des];
 	var file = uploadFile;
 
-	modalPlace = {place,file,des};
+	modalPlace = place;
 	
 	//console.log(modalPlace);
 	
@@ -336,6 +336,7 @@ function addPlace(){
 	
 	//본문 places 에 추가
 	places.push(modalPlace);
+	imgs.push(file);
 	
 	//input reset
 	initialize();

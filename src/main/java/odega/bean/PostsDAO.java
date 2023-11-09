@@ -109,12 +109,12 @@ private static PostsDAO instance = new PostsDAO();
 	
 	//insert : postsDTO값들 넣으면 포스트 작성
 	public void insertPost(PostsDTO post) throws Exception{
-		
+		//System.out.println("insertPost");
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 					//num, title, content, *post_like_cnt, user_num, *reg, *content_cnt, *posts_views, *admin_like, update_reg
-		String SQL = "insert into posts (num, title, content, user_num, update_reg) values (posts_seq.nextval, ?,?,?,sysdate);";
+		String SQL = " insert into posts (num, title, content, user_num, update_reg) values (posts_seq.nextval, ?,?,?,sysdate) ";
 		
 		try {
 			conn = getConnection();
@@ -122,6 +122,7 @@ private static PostsDAO instance = new PostsDAO();
 			pstmt.setString(1, post.getTitle());
 			pstmt.setString(2, post.getContent());
 			pstmt.setInt(3, post.getUser_num());
+			pstmt.executeUpdate();
 		} catch(Exception e) {
 			e.printStackTrace();	//예외처리
 		}finally {
@@ -129,8 +130,8 @@ private static PostsDAO instance = new PostsDAO();
 		}
 	}
 	
-	//select : user_num 기준 가장 최근 작성 postNum 가져오기
-	public int getPostNum(int unum) throws Exception {
+	//select : 가장 최근 작성 postNum 가져오기
+	public int getLatestPostNum() throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -139,10 +140,8 @@ private static PostsDAO instance = new PostsDAO();
 		
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement("select num from (select * from posts where user_num = 3 order by reg desc) where rownum = 1;");
-			pstmt.setInt(1, unum);
+			pstmt = conn.prepareStatement("select num from (select * from posts order by reg desc) where rownum = 1 ");
 			rs = pstmt.executeQuery();
-			
 			if (rs.next()) {
 				post_num = rs.getInt("num");
 			}

@@ -55,29 +55,30 @@ public class MapDAO extends OracleDB{
 	}
 	
 	
-	//insert: postNum 받으면 해당 post에 mapList넣어주기
-	public void insertMaps(int postNum, List<MapDTO> mapList) throws Exception {
+	//insert: 해당 post에 mapList넣어주기
+	public void insertMaps(List<MapDTO> mapList) throws Exception {
+		//System.out.println("insertmaps");
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
 			conn = getConnection();
-			//insert into maps values (id,place_name,address_name,description,post_num,image_num,lat,longi);
-			pstmt = conn.prepareStatement("insert into maps values (?,?,?,?,?,?,?,?)");
-			
 			//for문 돌려야함
 			for(int i=0; i<mapList.size(); i++) {
+				//insert into maps values (id,place_name,address_name,description,post_num,image_num,lat,longi);
+				pstmt = conn.prepareStatement("insert into maps values (?,?,?,?,?,?,?,?) ");
 				pstmt.setInt(1, mapList.get(i).getId());
 				pstmt.setString(2, mapList.get(i).getPlace_name());
 				pstmt.setString(3, mapList.get(i).getAddress_name());
 				pstmt.setString(4, mapList.get(i).getDescription());
-				pstmt.setInt(5,postNum);
+				pstmt.setInt(5,mapList.get(i).getPost_num());
 				pstmt.setInt(6, mapList.get(i).getImage_num());
 				pstmt.setString(7, mapList.get(i).getLat());
 				pstmt.setString(8, mapList.get(i).getLongi());
+				pstmt.executeUpdate();
 			}
-			pstmt.executeUpdate();
+			
 			
 		} catch(Exception ex) {
 			ex.printStackTrace();

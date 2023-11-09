@@ -29,13 +29,13 @@
         	alert("로그인 후 사용 가능합니다.");
          	window.location="/odega/views/user/loginform.jsp";
       	</script>
-	<%}else{
+	<%}
    		//로그인한 사용자 정보 받아오기
    		int unum = (Integer)session.getAttribute("unum");
 	%>
 	
 	<section>
-		<form method="get" action="#">
+		<form method="post" action="#" enctype="multipart/form-data">
 			<!-- 제목&본문 -->
 			<div class="form-floating mb-3">
 				<input type="text" class="form-control" id="title" placeholder="제목을 입력하세요" name="title" onChange="onChangeInputTitle()">
@@ -62,11 +62,9 @@
 			<!-- 장소 추가하기 -->
 			<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modal_addPlace" onclick="mapOpen()">장소 추가하기</button>
 			
-			
 			<!-- 추가한 장소 리스트 -->
-			<div id="placeList">
-				
-			</div>
+			<div id="placeList"></div>
+			
 			<!-- 포스트 전송 -->
 			<button type="button" class="btn btn-primary" onclick="submitForm()">포스팅하기</button>
 		</form>
@@ -75,10 +73,8 @@
 		<jsp:include page="modal.jsp" />
 		
 	</section>
-	<%} %>
 </body>
 <script>
-
 //본문데이터 선언하기
 var title;
 var contents;
@@ -89,38 +85,45 @@ function onChangeInputTitle () {
 function onChangeInputContents () {
 	contents = document.getElementById('contents').value;
 }
+
 var tags = [];
 var tag = {};
 var places = [];
-
-var postingData = {};    	
+var imgs = []; 	
 
 //폼전송
 function submitForm(){
-	//폼데이터 불러오기	
-	postingData = {
-		title : title,
-		contents : contents,
-		unum : unum,
-		tags : tags,
-		places : places
-	}	
-	
-	console.log(postingData);
-	
-	/*
+	//폼데이터	
+	formData = new FormData();
+	formData.append("title",title);
+	formData.append("contents", contents);
+	formData.append("unum", unum);
+	for(i = 0 ; i < tags.length ; i++){
+		formData.append("tag", tags[i]);
+	}
+	for(i = 0 ; i < places.length ; i++){
+		formData.append("places", places[i]);
+	}
+	for(i = 0 ; i < imgs.length ; i++){
+		formData.append("imgs"+i, imgs[i]);
+	}
+	console.log(imgs);
 	$.ajax({
-		url : '/odega/views/post/postingPro',
+		type : 'POST',
+		url : '/odega/views/post/postPro.jsp',
 		//dataType : 'json',
+		enctype: 'multipart/form-data',
 		contentType: false,
         processData: false,
-		type : 'POST',
-		data : formdata,	//json일땐, JSON.stringify(data)
+        //traditional : true,
+		cache: false,
+		data : formData,	//json일땐, JSON.stringify(data)
 		success : function(result) {
 			console.log(result);
 		}
 	});
-	*/
+	
+	window.location.href = '/odega/views/main.jsp';	
 }
 
 $(document).ready(function () {

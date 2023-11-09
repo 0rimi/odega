@@ -49,5 +49,30 @@ public class ImageDAO extends OracleDB{
 
 		return imgList;
 	}
+	
+	//insert: postNum 받으면 해당 post에 imgList넣어주기
+	public void insertImgs(List<ImageDTO> imgList) throws Exception {
+		System.out.println("insertImages");
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = getConnection();
+			//for문 돌려야함
+			for(int i=0; i<imgList.size(); i++) {
+				//insert into maps values (num,img_url,post_num,post_image_num);
+				pstmt = conn.prepareStatement("insert into images values (images_seq.nextval,?,?,?)");
+				pstmt.setString(1, imgList.get(i).getImg_url());
+				pstmt.setInt(2,imgList.get(i).getPosts_num());
+				pstmt.setInt(3, i+1);
+				pstmt.executeUpdate();
+			}
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			close(rs, pstmt, conn);
+		}
+	}
 
 }
