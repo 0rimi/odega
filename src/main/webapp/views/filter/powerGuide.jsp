@@ -33,14 +33,18 @@
 					<%@include file="dbconn.jsp"%>
 
 					<% 
-				  	String sql ="select a.*, b.*, c.* from posts a join users b on a.user_num = b.num join images c on a.num = c.posts_num order by b.user_like_cnt desc";
-                	pstmt = conn.prepareStatement(sql);
+				//  	String sql ="select a.*, b.*, c.* from posts a join users b on a.user_num = b.num join images c on a.num = c.posts_num order by b.user_like_cnt desc";
+					String sql =" select * from ( select a.*,   ( SELECT DISTINCT(NICKNAME)FROM users c WHERE a.user_num = c.num and c.num != 5 AND ROWNUM = 1 ) as  NICKNAME " +
+				                " ,(SELECT DISTINCT(USER_LIKE_CNT) FROM users c WHERE a.user_num = c.num  and c.num != 5 AND ROWNUM = 1 ) as USER_LIKE_CNT " + 
+					            " , nvl(( select distinct(img_url) from images c where  c.posts_num = a.num  and rownum =1 )   , 'cafe6.jpg')     as img_url   from posts a  where rownum < 11 ) aa   where aa.NICKNAME is not null  order by aa.user_like_cnt ";
+
+					pstmt = conn.prepareStatement(sql);
     				rs = pstmt.executeQuery();
     				while (rs.next()) {
     			%>
 					<div class="col d-flex align-items-start">
 						<div class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
-							<img src="<%=rs.getString("img_url") %>" width="100 px" height="100px">
+							<img src="/odega/resources/img/<%=rs.getString("img_url") %>" width="100 px" height="100px">
 						</div>
 						<div>
 							<h3 class="fs-2 text-body-emphasis"><%=rs.getString("nickname") %>

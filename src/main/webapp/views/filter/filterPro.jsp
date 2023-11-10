@@ -17,7 +17,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <!--boot js-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    <link href="./themeView.css" rel="stylesheet">
+    <link href="../../resources/static/css/themeView.css" rel="stylesheet">
 </head>
 <body>
     <!--header-->
@@ -58,7 +58,7 @@
 				     if(city != null && !city.isEmpty()) {
 					  		dynamicQuery.append(" or tag_name like ?"   );
 					     }  
-				     dynamicQuery.append(" group by post_num) order by b.reg desc"); //if 쿼리문이 끝라면 작성일 순서로 출력하기 위한 쿼리문을 뒤에 붙였습니다.  
+				     dynamicQuery.append(" group by post_num) order by b.post_like_cnt desc"); //if 쿼리문이 끝라면 작성일 순서로 출력하기 위한 쿼리문을 뒤에 붙였습니다.  
 				         pstmt = conn.prepareStatement(dynamicQuery.toString());
 				         pstmt.setString(1, "%" + who + "%");
 				         pstmt.setString(2, "%" + day + "%");
@@ -71,7 +71,7 @@
 			x =x+1 ;     		
   %>    			
                 	<div id="profileBox" class="d-flex justify-content-center m-1">
-                    <img src="<%=rs.getString("img_url")%>" width="200 px" height="180 px">
+                    <img src="/odega/resources/img/<%=rs.getString("img_url")%>" width="200 px" height="180 px">
                     <div id="infoBox" class="m-3">
                         <a href="../post/postView.jsp?num=<%=rs.getInt("num") %>" title="<%=rs.getString("nickname")%>의 포스팅 보기" ><%=rs.getString("title") %><a><br>
                         <%=rs.getString("content") %><br>
