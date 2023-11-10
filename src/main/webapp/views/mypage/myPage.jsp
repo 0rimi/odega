@@ -3,7 +3,7 @@
 <%@ page import="odega.bean.mypage.myPageDTO" %>
 <%@ page import="odega.bean.mypage.myPageDAO" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
-
+ 
 <html>
 
 <head>

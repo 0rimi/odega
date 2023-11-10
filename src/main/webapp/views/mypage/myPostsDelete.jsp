@@ -11,6 +11,7 @@
 
 <%
 	int num = Integer.parseInt(request.getParameter("num"));
+	System.out.println(num);
 	myPageDAO dao = new myPageDAO();
 	myPageDTO dto = new myPageDTO();
 	String sid = (String)session.getAttribute("sid");

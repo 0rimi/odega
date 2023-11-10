@@ -2,7 +2,7 @@
 
 <jsp:useBean id="dto" class="odega.bean.mypage.myPageDTO" />
 <jsp:useBean id="dao" class="odega.bean.mypage.myPageDAO" />
-
+ 
 <jsp:setProperty property="userpw" name="dto" />
 <jsp:setProperty property="nickname" name="dto" />
 <jsp:setProperty property="user_name" name="dto" />

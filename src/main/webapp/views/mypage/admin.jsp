@@ -3,7 +3,7 @@
 <%@ page import="odega.bean.mypage.myPageDTO" %>
 <%@ page import="odega.bean.mypage.myPageDAO" %>
 <html>
-
+ 
 <head>
 <meta charset="UTF-8">
 <title> ODEGA 관리자 페이지 </title>
@@ -52,6 +52,7 @@
 				<select name="searchOption">
 					<option value="total">제목+본문</option>
 					<option value="title">제목</option>
+					<option value="writer">작성자</option>
 				</select> <input type="text" name="search" placeholder="삭제할 포스팅">
 				<button type="submit" class="btn btn-success">검색</button>
 		</form>
@@ -129,13 +130,13 @@
 												<a href="myPostsUpdate.jsp?num=<%=dto.getPost_num()%>"><button type="button" class="btn btn-success" >추천</button></a>
 												
 												<script type="text/javascript">
-												function del() {
+												function del(postNum) {
 													if(confirm("정말 삭제하시겠습니까?")==true){
-														location.href='myPostsDelete.jsp?num=<%=dto.getPost_num()%>';
+														location.href='myPostsDelete.jsp?num='+postNum;
 													}
 												}
 												</script>
-												<button onclick="del();" type="button" class="btn btn-success" >삭제</button>
+												<button onclick="del(<%=dto.getPost_num()%>);" type="button" class="btn btn-success" >삭제</button></td>
 												<h3></h3>
 												<hr />
 												

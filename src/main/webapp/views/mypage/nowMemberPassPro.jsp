@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>  
-
+ 
 <jsp:useBean id="dto" class="odega.bean.mypage.myPageDTO" />
 <jsp:useBean id="dao" class="odega.bean.mypage.myPageDAO" />
 <%--<jsp:setProperty property="userpw" name="dto" />

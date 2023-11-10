@@ -5,7 +5,7 @@
 <%@ page import="odega.bean.mypage.myPageDAO" %>
 <jsp:useBean id="dto" class="odega.bean.mypage.myPageDTO" />
 <jsp:useBean id="dao" class="odega.bean.mypage.myPageDAO" />
-
+ 
 <head>
 <meta charset="UTF-8">
 <title> ODEGA 검색 </title>
@@ -79,25 +79,7 @@
     </form>
 </div>
 
-<%
-	if(sid == null){%>	
-	<script>
-		alert("로그인 후 사용 가능합니다.");
-		window.location="/odega/views/user/loginform.jsp";
-	</script>
-	<% } else if(sid.equals("admin")){ %>
-		<div align="center">
-			<form action="search.jsp">
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-				<a href="admin.jsp?msql1=p.reg&msql2=desc"><button type="button" class="btn btn-outline-success">추천/글삭제</button></a> 
-				<a href="adminMembers.jsp"><button type="button" class="btn btn-outline-success">회원 강제 탈퇴</button></a> 
-			</form>
-		</div>
-	<%}%>
-
-
+ 
 <h1></h1><br />
 <div align="center" >
 	<h1>검색한 <% search = request.getParameter("search"); %>"<%=search %>" 의 포스트입니다.</h1>

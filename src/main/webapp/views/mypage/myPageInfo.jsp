@@ -4,7 +4,7 @@
 <%@ page import="odega.bean.mypage.myPageDAO" %>
 <%@ page import ="java.text.SimpleDateFormat" %>
 <html>
-
+ 
 <head>
 <meta charset="UTF-8">
 <title> ODEGA MyPage </title>

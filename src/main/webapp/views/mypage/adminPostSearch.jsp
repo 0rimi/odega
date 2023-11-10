@@ -3,7 +3,7 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="odega.bean.mypage.myPageDTO"%>
 <%@ page import="odega.bean.mypage.myPageDAO"%>
-  
+ 
 <head>
 <meta charset="UTF-8">
 <title>ODEGA 관리자 페이지</title>
@@ -46,22 +46,26 @@
    	%>
 
 	<%-- 관리자 계정의 글정보 확인(최신순, 오래된순, 좋아요순 , 검색) --%>
-	<%-- 검색(제목만 검색) , 검색(제목+본문 검색) --%>
+	<%-- 검색(제목만 검색) , 검색(제목+본문 검색), 검색(작성자 검색) --%>
 	<div align="center">
 		<form action="adminPostSearch.jsp">
 			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <img
 				src="/odega/resources/img/today.png" style="width: 130px"> <img src="/odega/resources/img/odega.gif" style="width: 200px"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
-				<a href="admin.jsp?msql1=reg&msql2=desc"><button type="button" class="btn btn-success">추천/글삭제</button></a> 
-				<a href="admin.jsp?msql1=p.reg&msql2=desc"><button type="button" class="btn btn-outline-success">전체 최신순</button></a> 
-				<a href="admin.jsp?msql1=p.reg&msql2=asc"><button type="button" class="btn btn-outline-success">전체 오래된순</button></a>  
+				<a href="/odega/views/mypage/admin.jsp?msql1=reg&msql2=desc">
+				<button type="button" class="btn btn-success">추천/글삭제</button></a> 
+				<a href="/odega/views/mypage/admin.jsp?msql1=p.reg&msql2=desc">
+				<button type="button" class="btn btn-outline-success">전체 최신순</button></a> 
+				<a href="/odega/views/mypage/admin.jsp?msql1=p.reg&msql2=asc">
+				<button type="button" class="btn btn-outline-success">전체 오래된순</button></a>  
 				<select name="searchOption">
 					<option value="total">제목+본문</option>
 					<option value="title">제목</option>
+					<option value="writer">작성자</option>
 				</select> <input type="text" name="search" placeholder="보고싶은 포스팅은?">
 				<button type="submit" class="btn btn-success">검색</button>
 		</form>
 	</div>
-
+	<%-- 검색(회원명) , 검색(닉네임) 검색(전화번호) --%>
 	<div align="center">
 		<form action="adminMemberSearch.jsp">
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -71,9 +75,12 @@
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-				<a href="adminMembers.jsp?msql1=reg&msql2=asc"><button type="button" class="btn btn-success">회원 삭제</button></a> 
-				<a href="adminMembers.jsp?msql1=num&msql2=desc"><button type="button" class="btn btn-outline-success">전체 최신순</button></a> 
-				<a href="adminMembers.jsp?msql1=num&msql2=asc"><button type="button" class="btn btn-outline-success">전체 오래된순</button></a> 
+				<a href="adminMembers.jsp?msql1=reg&msql2=asc">
+				<button type="button" class="btn btn-success">회원 삭제</button></a> 
+				<a href="adminMembers.jsp?msql1=num&msql2=desc">
+				<button type="button" class="btn btn-outline-success">전체 최신순</button></a> 
+				<a href="adminMembers.jsp?msql1=num&msql2=asc">
+				<button type="button" class="btn btn-outline-success">전체 오래된순</button></a> 
 				<select name="searchOption">
 					<option value="name">회원명</option>
 					<option value="nickname">닉네임</option>
@@ -133,7 +140,8 @@
 				<p style="font-size:15px;">조회수 : <%=dto.getPost_content_cnt() %></p>
 				<p style="font-size:15px;">작성일 : <%=dto.getPost_reg()%></p>
 				<h5><img src="/odega/resources/img/good.PNG" style="width:30px"> <%=dto.getPost_like_cnt()%></h5>
-				<a href="myPostsUpdate.jsp?num=<%=dto.getPost_num()%>"><button type="button" class="btn btn-success" >추천</button></a>
+				<a href="myPostsUpdate.jsp?num=<%=dto.getPost_num()%>">
+				<button type="button" class="btn btn-success" >추천</button></a>
 				<button onclick="del(<%=dto.getPost_num()%>);" type="button" class="btn btn-success" >삭제</button>
 				<h3></h3>
 				<hr />
