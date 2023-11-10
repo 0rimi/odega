@@ -101,7 +101,7 @@
                         작성일 :
                         <%=dto.getPost_reg()%></p>
                      <h5>
-                        <img src="/odega/resources/img/good.PNG" style="width: 30px">
+                        <a href="../views/recomm/like_cnt_up.jsp?num=<%=dto.getPost_num()%>&page=main"><img src="/odega/resources/img/good.PNG" style="width: 30px"></a>
                         <%=dto.getPost_like_cnt()%></h5>
                   </div>
                   <% } %>
